@@ -1,0 +1,31 @@
+
+clear all
+clc
+% load X
+% n = size(X,1);
+%human = 1;
+ngam = 100;
+
+for i = 1:ngam
+load X
+n = size(X,1);
+move = zeros(1,0);
+win = 0;
+for turn = 1:9
+
+%if ((human == 0) || (human == 1 && mod(turn,2)==0) || (human == 2 && (mod(turn,2)==1)))
+%if(1)
+if((mod(turn,2)==1))
+
+freq = zeros(1,9);
+if (turn == 1)
+for j = 1:n
+freq(X(j,turn)) = freq(X(j,turn)) + X(j,10);
+end
+else
+for j = 1:n
+if(isequal(X(j,1:turn-1),move(1,1:turn-1)))
+freq(X(j,turn)) = freq(X(j,turn)) + X(j,10)*(mod(turn,2)*2-1);
+end
+end
+end 
